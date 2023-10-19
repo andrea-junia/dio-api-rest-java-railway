@@ -44,6 +44,6 @@ classDiagram
 
   User "1" *-- "1" Transaction
   User "1" *-- "1" Card
-  User "1" *-- "N" Item
-  User "1" *-- "1" Doctor
+  Transaction "1" *-- "N" Item
+  Transaction "1" *-- "1" Doctor
 ```
