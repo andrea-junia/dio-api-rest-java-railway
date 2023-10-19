@@ -20,15 +20,19 @@ Desafio de projeto entrege como atividade final para DIO - Santander Bootcamp 20
 classDiagram
     class User {
         +String nameUser
-        +Transaction transatction
-        +List<Item> itens
-        +Doctor doctor
         +Card cardUser
+        +Transaction transaction
+    }
+    class Card {
+        +String number
+        +Date validity
     }
     class Transaction {
         +String number
         +String dateTime
         +String type
+        +List<Item> itens
+        +Doctor doctor
     }
     class Item {
         +String code
@@ -39,13 +43,9 @@ classDiagram
         +String code
         +String name
     }
-    class Card {
-        +String number
-        +Date validity
-    }
 
-  User "1" *-- "1" Transaction
   User "1" *-- "1" Card
+  User "1" *-- "1" Transaction  
   Transaction "1" *-- "N" Item
   Transaction "1" *-- "1" Doctor
 ```
