@@ -12,31 +12,37 @@ Desafio de projeto entrege como atividade final para DIO - Santander Bootcamp 20
 
 ## Diagrama de Classes (Domínio da API)
 
+- **Este diagrama representa as classes User, Transaction, Item, Doctor e Card com seus respectivos atributos. 
+- **A classe User tem associações com todas as outras classes. 
+- **Note que agora a classe User tem uma lista de Item, representando o array de itens no JSON.
+
 ```mermaid
 classDiagram
-   {
-      "nameUser": "andrea",
-      "transatction": {
-        "number": "1234",
-        "dateTime": "20231019 17:46:00",
-        "type": "001"
-      },
-      "itens": [
-        {
-          "code": "10101012",
-          "quantity": 1,
-          "status": "2"
-        }
-      ],
-      "doctor": {
-        "code": "123",
-        "name": "dio clinic"
-      },
-      "cardUser": {
-        "number": "1236",
-        "validity": "2023-12-31"
-      }
-   }
+    class User {
+        +String nameUser
+        +Transaction transatction
+        +List<Item> itens
+        +Doctor doctor
+        +Card cardUser
+    }
+    class Transaction {
+        +String number
+        +String dateTime
+        +String type
+    }
+    class Item {
+        +String code
+        +int quantity
+        +String status
+    }
+    class Doctor {
+        +String code
+        +String name
+    }
+    class Card {
+        +String number
+        +Date validity
+    }
 
   User "1" *-- "1" Transaction
   User "1" *-- "1" Card
