@@ -14,33 +14,29 @@ Desafio de projeto entrege como atividade final para DIO - Santander Bootcamp 20
 
 ```mermaid
 classDiagram
-    class User {
-        +String nameUser
-        +Transaction transatction
-        +Item item
-        +Doctor doctor
-        +Card cardUser
-    }
-    
-    class Card {
-        +String number
-        +Date validity
-    }
-
-    class Transaction {
-        +String number
-        +String dateTime
-        +String type
-    }
-    class Item {
-        +String code
-        +int quantity
-        +String status
-    }
-    class Doctor {
-        +String code
-        +String name
-    }
+   {
+      "nameUser": "andrea",
+      "transatction": {
+        "number": "1234",
+        "dateTime": "20231019 17:46:00",
+        "type": "001"
+      },
+      "itens": [
+        {
+          "code": "10101012",
+          "quantity": 1,
+          "status": "2"
+        }
+      ],
+      "doctor": {
+        "code": "123",
+        "name": "dio clinic"
+      },
+      "cardUser": {
+        "number": "1236",
+        "validity": "2023-12-31"
+      }
+   }
 
   User "1" *-- "1" Transaction
   User "1" *-- "1" Card
