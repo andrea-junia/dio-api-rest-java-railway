@@ -14,7 +14,7 @@ Desafio de projeto entrege como atividade final para DIO - Santander Bootcamp 20
 
 - **Este diagrama representa as classes User, Transaction, Item, Doctor e Card com seus respectivos atributos. 
 - **A classe User tem associações com todas as outras classes. 
-- **Note que a classe User tem uma lista de Item, representando o array de itens no JSON.
+- **Note que a classe Transaction tem uma lista de Item, representando o array de itens no JSON.
 
 ```mermaid
 classDiagram
