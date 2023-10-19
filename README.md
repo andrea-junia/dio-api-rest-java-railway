@@ -31,7 +31,7 @@ classDiagram
         +String number
         +String dateTime
         +String type
-        +List<Item> itens
+        +Item[] itens
         +Doctor doctor
     }
     class Item {
