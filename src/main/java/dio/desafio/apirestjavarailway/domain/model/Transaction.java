@@ -20,7 +20,8 @@ public class Transaction {
 
     private TransactionType transactionType;
 
-    private User userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Item> itens;
@@ -62,12 +63,12 @@ public class Transaction {
         this.transactionType = transactionTpe;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     public List<Item> getItens() {

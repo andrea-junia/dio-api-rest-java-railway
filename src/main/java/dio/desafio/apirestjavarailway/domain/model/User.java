@@ -7,9 +7,6 @@ import jakarta.persistence.*;
 @Entity(name = "tb_user")
 public class User extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Card card;
 
