@@ -33,11 +33,11 @@ classDiagram
         +String type
         +Item[] itens
         +Doctor doctor
+        +String status
     }
     class Item {
         +String code
         +int quantity
-        +String status
     }
     class Doctor {
         +String code
