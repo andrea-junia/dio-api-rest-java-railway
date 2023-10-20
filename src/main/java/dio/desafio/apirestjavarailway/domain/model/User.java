@@ -2,14 +2,18 @@ package dio.desafio.apirestjavarailway.domain.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity(name = "tb_user")
 public class User extends Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Card card;
+
     public Card getCard() {return card;}
     public void setCard(Card card) {this.card = card;}
+
 }

@@ -20,7 +20,7 @@ public class Card {
     private String number;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate transactionDate;
+    private LocalDate validity;
 
     public Long getId() {return id;}
 
@@ -30,7 +30,7 @@ public class Card {
 
     public void setNumber(String number) {this.number = number;}
 
-    public LocalDate getTransactionDate() {return transactionDate;}
+    public LocalDate getValidity() {return validity;}
 
-    public void setTransactionDate(LocalDate transactionDate) {this.transactionDate = transactionDate;}
+    public void setValidity(LocalDate validity) {this.validity = validity;}
 }
