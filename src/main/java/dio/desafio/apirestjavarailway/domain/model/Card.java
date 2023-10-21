@@ -1,10 +1,6 @@
 package dio.desafio.apirestjavarailway.domain.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -33,4 +29,5 @@ public class Card {
     public LocalDate getValidity() {return validity;}
 
     public void setValidity(LocalDate validity) {this.validity = validity;}
+
 }

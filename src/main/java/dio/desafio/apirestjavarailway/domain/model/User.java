@@ -2,6 +2,8 @@ package dio.desafio.apirestjavarailway.domain.model;
 
 import java.util.List;
 
+import dio.desafio.apirestjavarailway.domain.model.Card;
+import dio.desafio.apirestjavarailway.domain.model.Person;
 import jakarta.persistence.*;
 
 @Entity(name = "tb_user")
