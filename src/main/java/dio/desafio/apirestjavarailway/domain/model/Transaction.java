@@ -15,21 +15,22 @@ public class Transaction {
     @Column(unique = true)
     private String number;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate transactionDate;
 
     private TransactionType transactionType;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Item> itens;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Doctor doctor;
 
     private String status;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Item> itens;
 
     public Long getId() {
         return id;
@@ -47,6 +48,14 @@ public class Transaction {
         this.number = number;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public LocalDate getTransactionDate() {
         return transactionDate;
     }
@@ -59,24 +68,8 @@ public class Transaction {
         return transactionType;
     }
 
-    public void setTransactionType(TransactionType transactionTpe) {
-        this.transactionType = transactionTpe;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUserId(User user) {
-        this.user = user;
-    }
-
-    public List<Item> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
     }
 
     public Doctor getDoctor() {
@@ -93,5 +86,13 @@ public class Transaction {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 }
