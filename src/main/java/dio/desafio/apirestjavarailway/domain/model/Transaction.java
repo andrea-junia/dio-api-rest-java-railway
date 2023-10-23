@@ -10,22 +10,18 @@ import java.util.List;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, name = "transactionId")
     private Long id;
 
-    @Column(unique = true)
     private String number;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+    @JoinColumn(name = "cardUser")
+    private String cardUser;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate transactionDate;
 
-    private TransactionType transactionType;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Doctor doctor;
+    private String transactionType;
 
     private String status;
 
@@ -48,12 +44,12 @@ public class Transaction {
         this.number = number;
     }
 
-    public User getUser() {
-        return user;
+    public String getCardUser() {
+        return cardUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCardUser(String cardUser) {
+        this.cardUser = cardUser;
     }
 
     public LocalDate getTransactionDate() {
@@ -64,20 +60,12 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
-    public TransactionType getTransactionType() {
+    public String getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(TransactionType transactionType) {
+    public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 
     public String getStatus() {

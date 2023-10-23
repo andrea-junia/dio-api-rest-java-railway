@@ -22,29 +22,20 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return this.userRepository.findAll();
-    }
-
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+    @Override
+    public List<User> findAll(){
+        return  userRepository.findAll();
+    }
+
     @Transactional
     public User create(User userToCreate) {
         ofNullable(userToCreate).orElseThrow(() -> new BusinessException("User to create must not be null."));
-        ofNullable(userToCreate.getCard()).orElseThrow(() -> new BusinessException("User account must not be null."));
-        ofNullable(userToCreate.getCard()).orElseThrow(() -> new BusinessException("User card must not be null."));
-
         this.validateChangeableId(userToCreate.getId(), "created");
-        if (userRepository.existsByCardNumber(userToCreate.getCard().getNumber())) {
-            throw new BusinessException("This account number already exists.");
-        }
-        if (userRepository.existsByCardNumber(userToCreate.getCard().getNumber())) {
-            throw new BusinessException("This card number already exists.");
-        }
         return this.userRepository.save(userToCreate);
     }
 
@@ -57,8 +48,6 @@ public class UserServiceImpl implements UserService {
         }
 
         dbUser.setName(userToUpdate.getName());
-        dbUser.setCard(userToUpdate.getCard());
-        dbUser.setCard(userToUpdate.getCard());
         return this.userRepository.save(dbUser);
     }
 
@@ -74,15 +63,5 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException("User with ID %d can not be %s.".formatted(UNCHANGEABLE_USER_ID, operation));
         }
     }
-
-
-    /*@Override
-    public User create(User userToCreate) {
-        if( userRepository.existsByCardNumber( userToCreate.getCard().getNumber() ) ){
-            throw new IllegalArgumentException("This Card number already exists");
-        }
-
-        return userRepository.save(userToCreate);
-    }*/
 
 }

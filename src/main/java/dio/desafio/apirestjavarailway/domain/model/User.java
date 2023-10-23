@@ -1,18 +1,9 @@
 package dio.desafio.apirestjavarailway.domain.model;
 
-import java.util.List;
-
-import dio.desafio.apirestjavarailway.domain.model.Card;
-import dio.desafio.apirestjavarailway.domain.model.Person;
 import jakarta.persistence.*;
 
 @Entity(name = "tb_user")
+@AttributeOverride(name = "id", column = @Column(name = "userId"))
 public class User extends Person {
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Card card;
-
-    public Card getCard() {return card;}
-    public void setCard(Card card) {this.card = card;}
 
 }

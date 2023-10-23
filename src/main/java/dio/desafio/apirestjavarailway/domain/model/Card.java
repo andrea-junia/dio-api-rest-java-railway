@@ -12,7 +12,10 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @JoinColumn(name = "userId") //foreign key tb_user
+    private String userId;
+
+    @Column(name = "cardUser", unique = true)
     private String number;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,6 +24,15 @@ public class Card {
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
+
+    public String getUserId() {
+
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getNumber() {return number;}
 
