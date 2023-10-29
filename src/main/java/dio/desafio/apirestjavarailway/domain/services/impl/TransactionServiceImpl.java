@@ -1,14 +1,14 @@
 package dio.desafio.apirestjavarailway.domain.services.impl;
 
 import dio.desafio.apirestjavarailway.domain.model.Transaction;
-import dio.desafio.apirestjavarailway.domain.model.User;
 import dio.desafio.apirestjavarailway.domain.repository.TransactionRepository;
 import dio.desafio.apirestjavarailway.domain.services.TransactionService;
+import dio.desafio.apirestjavarailway.domain.services.exception.BusinessException;
+import dio.desafio.apirestjavarailway.domain.services.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -26,16 +26,21 @@ public class TransactionServiceImpl implements TransactionService {
         return this.transactionRepository.findAll();
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public Transaction findById(Long id) {
-        return transactionRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return transactionRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    @Override
+    @Transactional
     public Transaction create(Transaction transactionToCreate) {
-        if( transactionRepository.existsByNumber( transactionToCreate.getNumber() ) ){
+
+       //ofNullable(transactionToCreate).orElseThrow(() -> new BusinessException("Transaction to create must not be null."));
+       // ofNullable(transactionToCreate.getCard()).orElseThrow(() -> new BusinessException("Transaction card must not be null."));
+
+        this.validateChangeableId(transactionToCreate.getId(), "created");
+        /*if( transactionRepository.existsByTransaction(transactionToCreate.getNumber() ) ){
             throw new IllegalArgumentException("This Transaction number already exists");
-        }
+        }*/
 
         return transactionRepository.save(transactionToCreate);
     }
@@ -48,5 +53,11 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void delete(Long aLong) {
 
+    }
+
+    private void validateChangeableId(Long id, String operation) {
+        if (UNCHANGEABLE_USER_ID.equals(id)) {
+            throw new BusinessException("User with ID %d can not be %s.".formatted(UNCHANGEABLE_USER_ID, operation));
+        }
     }
 }

@@ -1,5 +1,6 @@
 package dio.desafio.apirestjavarailway.domain.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity(name = "tb_item")
@@ -8,7 +9,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "codeItem", unique = true)
     private String code;
 
     private String description;

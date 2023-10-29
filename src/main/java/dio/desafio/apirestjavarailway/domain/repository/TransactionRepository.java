@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    boolean existsByNumber(String number);
+    //boolean existsByTransaction(String number);
 
 }
